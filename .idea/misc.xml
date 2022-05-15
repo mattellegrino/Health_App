@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/enric/AndroidStudioProjects/Health_App/app/src/main/res/layout/activity_device_scan.xml" value="0.4615036231884058" />
+        <entry key="..\:/Users/enric/AndroidStudioProjects/Health_App/app/src/main/res/layout/activity_device_scan2.xml" value="0.4615036231884058" />
+        <entry key="..\:/Users/enric/AndroidStudioProjects/Health_App/app/src/main/res/layout/activity_main.xml" value="0.4615036231884058" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15121580547112462" />
       </map>
     </option>

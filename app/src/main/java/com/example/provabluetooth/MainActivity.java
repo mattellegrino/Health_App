@@ -19,59 +19,30 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_ENABLE_BT = 1;
-    BluetoothManager bluetoothManager = getSystemService(BluetoothManager.class);
-    BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
-    private BluetoothLeScanner bluetoothLeScanner = bluetoothAdapter.getBluetoothLeScanner();
-    ScanCallback sc;
-    private boolean scanning;
-    private Handler handler = new Handler();
-
-    // Stops scanning after 10 seconds.
-    private static final long SCAN_PERIOD = 10000;
 
 
+    Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        if (bluetoothAdapter == null) {
-            // Device doesn't support Bluetooth
-        }
-
-        if (!bluetoothAdapter.isEnabled()) {
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            if (ActivityCompat.checkSelfPermission(
-                    this, Manifest.permission.BLUETOOTH) ==
-                    PackageManager.PERMISSION_GRANTED) {
-                // You can use the API that requires the permission.
-                startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-            } else {
-                // You can directly ask for the permission.
-                // The registered ActivityResultCallback gets the result of this request.
-                requestPermissionLauncher.launch(
-                        Manifest.permission.BLUETOOTH);
+        button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNewActivity();
             }
-        }
-
-
+        });
     }
-
-
-    private ActivityResultLauncher<String> requestPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    //Permesso garantito, continuare con il percorso
-                } else {
-                    //Spiegare all'utente che non è possibile continuare perchè l'utente ha rifiutato il permesso
-                }
-            });
-
+    public void openNewActivity(){
+        Intent intent = new Intent(this, DeviceScanActivity.class);
+        startActivity(intent);
+    }
    /* private void scanLeDevice() {
         if (!scanning) {
             // Stops scanning after a predefined scan period.
@@ -127,8 +98,6 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 */
-
-
 
 
 
